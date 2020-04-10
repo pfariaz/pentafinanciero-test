@@ -1,0 +1,6 @@
+{
+  "orm": {
+    "database": "api-test",
+    "logging": false
+  }
+}

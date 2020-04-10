@@ -1,0 +1,28 @@
+{
+  "orm": {
+    "username": "user",
+    "password": "pass",
+    "database": "api",
+    "host": "localhost",
+    "dialect": "postgresql",
+    "type": "postgres",
+    "port": 5432
+  },
+  "raven": {
+    "dsn": false
+  },
+  "appName": "api",
+  "server": {
+    "port": 4000,
+    "baseUrl": "/api",
+    "logFormat": "tiny"
+  },
+  "datadog": {
+    "projectName": "api",
+    "host": "datadog"
+  },
+  "winston": {
+    "format": "simple",
+    "level": "info"
+  }
+}
