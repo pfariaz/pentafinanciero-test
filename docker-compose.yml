@@ -1,0 +1,38 @@
+version: '3.4'
+services:
+  app:
+    build:
+      context: ./api
+      target: build
+    command: 'yarn watch:cmd node --inspect=9000 -r ts-node/register src/index.ts'
+    depends_on:
+      - postgres
+    environment:
+      - TS_NODE_FILES=true
+      - NODE_ENV=development
+      - NODE_CONFIG_ENV=development
+      - |
+        NODE_CONFIG={
+          "orm": { "host": "postgres" }
+        }
+    networks:
+      - default
+    ports:
+      - '4000:4000'
+    volumes:
+      - '.:/api/code'
+      - /api/code/node_modules
+  postgres:
+    image: 'postgres:9.6-alpine'
+    environment:
+      POSTGRES_DB: api-dte
+      POSTGRES_PASSWORD: J7uUu2r9VmwfmAtb
+      POSTGRES_USER: user_api_dte
+    networks:
+      - default
+    volumes:
+      - 'postgres:/var/lib/postgresql/data'
+networks:
+  default: {}
+volumes:
+  postgres: {}

@@ -2,22 +2,27 @@
 import * as express from 'express';
 import * as logger from 'morgan';
 import * as config from 'config';
-import * as Raven from 'raven';
 import routes from './routes';
 import { application } from '../application';
 import { Server } from 'http';
+import * as swagger from 'swagger-ui-express';
 
 export const app = express();
 
 if (config.util.getEnv('NODE_CONFIG_ENV') !== 'test') {
-  app.use(Raven.requestHandler());
-  app.use(Raven.errorHandler());
   app.use(
     logger(
       config.get('server.logFormat'),
       { skip: req => (req.baseUrl || req.originalUrl).includes('healthcheck') }
     )
   );
+}
+
+try {
+  const swaggerDocument = require('../../swagger.json');
+  app.use('/api/docs', swagger.serve, swagger.setup(swaggerDocument));
+} catch (err) {
+  console.log('Unable to load swagger.json', err);
 }
 
 app.use(config.get('server.baseUrl'), routes);
@@ -47,7 +52,6 @@ application.onStart(() => {
     .then(() => console.log(`${config.get('appName')} started!`))
     .catch((error: Error) => {
       console.error(error);
-      Raven.captureException(error);
       application.shutdown();
     });
 });

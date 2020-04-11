@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dte emision="1559347200" tipo="factura" folio="1">
+    <emisor rut="1-1" razonSocial="Company Acme" />
+    <receptor rut="2-2" razonSocial="Bugs Bunny SPA" />
+    <items>
+        <detalle monto="100" iva="19">Dinamitas</detalle>
+    </items>
+</dte>

@@ -1,6 +1,6 @@
 {
   "orm": {
-    "database": "api-test",
+    "database": "api-dte-test",
     "logging": false
   }
 }

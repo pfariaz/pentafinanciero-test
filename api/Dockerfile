@@ -8,7 +8,7 @@ RUN apk add --no-cache bash \
   make \
   g++ \
   python
-COPY package.json yarn.lock ./
+COPY package.json yarn.lock swagger.json ./
 RUN yarn install --production=false
 COPY tsconfig.json  ./
 COPY config/ ./config

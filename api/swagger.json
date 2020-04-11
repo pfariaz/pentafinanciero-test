@@ -1,0 +1,224 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Electronic documents API",
+    "description": "Electronic documents API",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "host": "localhost:4000",
+  "basePath": "/api/",
+  "tags": [
+    {
+      "name": "Invoice",
+      "description": "API for invoice"
+    }
+  ],
+  "consumes": [
+    "application/json",
+    "multipart/form-data"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/invoices": {
+      "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "description": "number of page",
+            "type": "integer"
+          },
+          {
+              "name": "itemsPerPage",
+              "in": "query",
+              "required": false,
+              "description": "quantity of item per page",
+              "type": "integer"
+            }
+      ],
+      "get": {
+        "tags": [
+          "Invoice"
+        ],
+        "summary": "Get all the invoices",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                  "invoices": {
+                      "type":"array",
+                      "description":"all invoices saved in the system",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type":"integer",
+                            "description":"id of record"
+                          },
+                          "type": {
+                            "type":"string",
+                            "description":"type of invoice (invoice or ticket)"
+                          },
+                          "folio": {
+                            "type":"integer",
+                            "description":"invoice ID, unique for a given emitting party"
+                          },
+                          "issueDate": {
+                            "type":"string",
+                            "description":"timestamp when this invoice was issued"
+                          },
+                          "createdAt": {
+                            "type":"string",
+                            "description":"timestamp when this invoice was created"
+                          },
+                          "updatedAt": {
+                            "type":"string",
+                            "description":"timestamp when this invoice was updated"
+                          },
+                          "emitter": {
+                            "type":"object",
+                            "description":"Company invoice emitter",
+                            "properties": {
+                              "id": {
+                                "type":"integer",
+                                "description":"id of record"
+                              },
+                              "rut": {
+                                "type":"string",
+                                "description":"company ID"
+                              },
+                              "businessName": {
+                                "type":"string",
+                                "description":"company NAME"
+                              },
+                              "createdAt": {
+                                "type":"string",
+                                "description":"timestamp when this company was created"
+                              },
+                              "updatedAt": {
+                                "type":"string",
+                                "description":"timestamp when this company was updated"
+                              }
+                            }
+                          },
+                          "receiver": {
+                            "type":"object",
+                            "description":"Company invoice receiver",
+                            "properties": {
+                              "id": {
+                                "type":"integer",
+                                "description":"id of record"
+                              },
+                              "rut": {
+                                "type":"string",
+                                "description":"company ID"
+                              },
+                              "businessName": {
+                                "type":"string",
+                                "description":"company NAME"
+                              },
+                              "createdAt": {
+                                "type":"string",
+                                "description":"timestamp when this company was created"
+                              },
+                              "updatedAt": {
+                                "type":"string",
+                                "description":"timestamp when this company was updated"
+                              }
+                            }
+                          },
+                          "details": {
+                            "type":"array",
+                            "description":"all product/services of the invoice",
+                            "items": {
+                              "type":"object",
+                              "properties": {
+                                "id": {
+                                  "type":"integer",
+                                  "description":"id of record"
+                                },
+                                "description": {
+                                  "type":"string",
+                                  "description":"description of product or service"
+                                },
+                                "amount": {
+                                  "type":"integer",
+                                  "description":"amount of the product or service"
+                                },
+                                "tax": {
+                                  "type":"integer",
+                                  "description":"tax of the product or service"
+                                },
+                                "createdAt": {
+                                  "type":"string",
+                                  "description":"timestamp when this invoice was created"
+                                },
+                                "updatedAt": {
+                                  "type":"string",
+                                  "description":"timestamp when this invoice was updated"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                  },
+                  "total_invoices": {
+                      "type":"integer",
+                      "description":"quantity of invoices"
+                  },
+                  "pages": {
+                      "type":"integer",
+                      "description":"quantity of pages"
+                  },
+                  "current_page": {
+                      "type":"integer",
+                      "description":"the current page"
+                  }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/invoices/file": {
+      "parameters": [
+          {
+            "name": "file",
+            "in": "formData",
+            "required": true,
+            "description": "XML file of invoice to upload",
+            "type": "file"
+          }
+      ],
+      "post": {
+        "tags": [
+          "Invoice"
+        ],
+        "summary": "Upload XML Invoice",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                  "recordsImported": {
+                      "type":"boolean",
+                      "description":"Flag indicates that XML was upload successful"
+                  }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

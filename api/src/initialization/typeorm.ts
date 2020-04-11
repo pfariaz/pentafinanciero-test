@@ -14,7 +14,8 @@ export const connection = async () => createConnection({
   migrations: [
     'src/migrations/*.ts',
     'build/migrations/*.js'
-  ]
+  ],
+  synchronize: true
 });
 application.onStart(() => connection());
 application.onShutdown(() => getConnection().close());

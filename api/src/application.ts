@@ -1,6 +1,5 @@
 /* istanbul ignore file */
 import * as config from 'config';
-import * as Raven from 'raven';
 
 class Application {
   private startHandlers: Function[] = [];
@@ -37,7 +36,6 @@ class Application {
       .then(() => process.exit())
       .catch((error: Error) => {
         console.error(error);
-        Raven.captureException(error);
         process.exit(1);
       });
   }
