@@ -1,4 +1,4 @@
-# PentaFinanciero test application
+# PentaFinanciero test aplication
 
 Here is the code for PentaFinanciero job application
 
