@@ -19,21 +19,21 @@ To launch without docker, you will need a postgres database running and edit cre
 
 After that, you must execute the following commands to launch frontend and backend apps:
 
- 1. Front-end: in `/client` folder type: 
- Yarn:
- `yarn install`
- `yarn start`
- NPM:
-  `npm install`
- `npm start`
+1. Front-end: in `/client` folder: 
+	 1. via yarn:
+		   `yarn install`
+       `yarn start`
+	 2. via npm:
+		   `npm install`
+       `npm start`
  
- 2. Back-end: in `/api` folder type: 
- Yarn:
-  `yarn install`
- `yarn start`
- NPM:
-  `npm start`
- `npm start`
+ 2. Back-end: in `/api` folder: 
+	 1. via yarn:
+		   `yarn install`
+       `yarn start`
+	 2. via npm:
+		   `npm install`
+       `npm start`
 
 ## Access to app
 to access to the app, you have to enter to [http://localhost:3000/login](http://localhost:3000/login) and de credentials are:
