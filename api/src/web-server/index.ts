@@ -6,6 +6,7 @@ import routes from './routes';
 import { application } from '../application';
 import { Server } from 'http';
 import * as swagger from 'swagger-ui-express';
+import * as cors from 'cors';
 
 export const app = express();
 
@@ -25,6 +26,7 @@ try {
   console.log('Unable to load swagger.json', err);
 }
 
+app.use(cors());
 app.use(config.get('server.baseUrl'), routes);
 
 export let server: Server;
