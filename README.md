@@ -36,7 +36,7 @@ After that, you must execute the following commands to launch frontend and backe
        `npm start`
 
 ## Access to app
-to access to the app, you have to enter to [http://localhost:3000/login](http://localhost:3000/login) and de credentials are:
+to access to the app, you have to enter to [http://localhost:3000/login](http://localhost:3000/login) and the credentials are:
 
     user:  "superuser@pentafinanciero.cl"
     pass:  "pass123"
