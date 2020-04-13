@@ -51,6 +51,9 @@ router.get('/', async (req, res) => {
     const totalInvoices = await Invoice.count();
     const totalPages = Math.ceil(totalInvoices/itemsPerPage);
     const invoices = await Invoice.find({
+      order: {
+        issueDate: 'DESC'
+      },
       relations: ['emitter', 'receiver', 'details'],
       skip: ((page - 1) * itemsPerPage),
       take: itemsPerPage
